@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.algonquincollegelive.oh000024.doorsopenottawa.MainActivity">
+
+    <item android:id="@+id/action_about"
+        android:title="@string/action_about"
+        android:icon="@android:drawable/ic_dialog_info"
+        android:orderInCategory="100"
+        app:showAsAction="always"/>
+
+    <!--&lt;!&ndash; TODO #7 - New menu item: Upload Image of Pluto &ndash;&gt;-->
+    <!--<item android:id="@+id/action_post_data_binary"-->
+        <!--android:title="@string/post_data_binary"-->
+        <!--android:icon="@android:drawable/ic_menu_add"-->
+        <!--android:orderInCategory="160"-->
+        <!--app:showAsAction="never"/>-->
+    <item android:id="@+id/action_all_items"
+        android:title="@string/show_all_buildings"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/action_choose_category"
+        android:title="@string/choose_a_category"
+        app:showAsAction="never"/>
+
+    <group android:id="@+id/sort_options" android:checkableBehavior="single">
+        <item android:id="@+id/action_sort_name_asc"
+            android:title="Sort by Name (a-z)"
+            android:checked="false" />
+        <item android:id="@+id/action_sort_name_dsc"
+            android:title="Sort by Name (z-a)"
+            android:checked="false" />
+    </group>
+
+</menu>

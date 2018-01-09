@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.algonquincollegelive.oh000024.doorsopenottawa.EditBuildingActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="129dp"
+        android:layout_height="41dp"
+        android:layout_marginLeft="16dp"
+        android:text="@string/addressTV"
+        android:textSize="@dimen/text_size24"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <EditText
+        android:id="@+id/editAddressET"
+        android:layout_width="252dp"
+        android:layout_height="46dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorAccent"
+        android:ems="10"
+        android:hint="Building Address"
+        android:inputType="text"
+        android:textSize="24sp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@+id/textView"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="131dp"
+        android:layout_height="42dp"
+        android:layout_marginLeft="16dp"
+        android:text="@string/description"
+        android:textSize="@dimen/text_size24"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="47dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/editDescET"
+        android:layout_width="251dp"
+        android:layout_height="115dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorAccent"
+        android:ems="10"
+        android:hint="Description"
+        android:inputType="textMultiLine"
+        android:lineSpacingExtra="8sp"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintLeft_toRightOf="@+id/textView2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editAddressET" />
+
+    <CheckBox
+        android:id="@+id/isNewBuildingCB"
+        android:layout_width="280dp"
+        android:layout_height="42dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/isNewBuilding"
+        android:textSize="24sp"
+        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editDescET" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="90dp"
+        android:layout_height="32dp"
+        android:layout_marginLeft="16dp"
+        android:text="@string/saturdaystart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.486" />
+
+    <EditText
+        android:id="@+id/editSaturdayStartET"
+        android:layout_width="280dp"
+        android:layout_height="47dp"
+        android:layout_below="@+id/isNewBuildingCB"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorAccent"
+        android:ems="10"
+        android:hint="Start TIme"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/editSaturdayEndET"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintLeft_toRightOf="@+id/textView3"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/isNewBuildingCB"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="90dp"
+        android:layout_height="32dp"
+        android:layout_marginLeft="16dp"
+        android:text="@string/saturdayend"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <EditText
+        android:id="@+id/editSaturdayEndET"
+        android:layout_width="280dp"
+        android:layout_height="47dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_below = "@+id/editSaturdayStartET"
+        android:background="@color/colorAccent"
+        android:ems="10"
+        android:hint="End Time"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/editSundayStartET"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/textView4"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintHorizontal_bias="0.111" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="90dp"
+        android:layout_height="32dp"
+        android:layout_marginLeft="16dp"
+        android:text="@string/sundaystart"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <EditText
+        android:id="@+id/editSundayStartET"
+        android:layout_width="280dp"
+        android:layout_height="47dp"
+        android:layout_below="@+id/editSaturdayStartET"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/colorAccent"
+        android:ems="10"
+        android:hint="Start Time"
+        android:inputType="date|time"
+        app:layout_constraintBottom_toTopOf="@+id/editSundayEndET"
+        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintLeft_toRightOf="@+id/textView5"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="90dp"
+        android:layout_height="32dp"
+        android:layout_marginLeft="16dp"
+        android:text="@string/sundayend"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <EditText
+        android:id="@+id/editSundayEndET"
+        android:layout_width="280dp"
+        android:layout_height="47dp"
+        android:layout_below="@+id/editSundayStartET"
+        android:layout_marginBottom="71dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/colorAccent"
+        android:ems="10"
+        android:hint="End Time"
+        android:inputType="text|datetime"
+        app:layout_constraintBottom_toTopOf="@+id/editCancelBT"
+        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintLeft_toRightOf="@+id/textView6"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/editSaveBT"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="36dp"
+        android:onClick="onPressedUpdate"
+        android:text="@string/save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.441"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/editCancelBT"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintVertical_bias="0.972" />
+
+    <Button
+        android:id="@+id/editCancelBT"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="49dp"
+        android:onClick="onPressedCancel"
+        android:text="@string/cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

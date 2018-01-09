@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.algonquincollegelive.oh000024.doorsopenottawa.NewBuilding">
+
+    <TextView
+        android:id="@+id/buildingNameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/addressTV"
+        android:layout_marginTop="130dp"
+        android:text="@string/buildingName"
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="139dp" />
+
+    <EditText
+        android:id="@+id/buildingNameET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/buildingNameTV"
+        android:layout_alignBottom="@+id/buildingNameTV"
+        android:layout_marginStart="30dp"
+        android:layout_toEndOf="@+id/buildingNameTV"
+        android:ems="10"
+        android:hint="Building Name"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="167dp"
+        tools:layout_editor_absoluteY="183dp" />
+
+    <TextView
+        android:id="@+id/addressTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/addressET"
+        android:layout_alignBottom="@+id/addressET"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="33dp"
+        android:text="@string/buildingAddress"
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="209dp" />
+
+    <EditText
+        android:id="@+id/addressET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/buildingNameET"
+        android:layout_below="@+id/buildingNameET"
+        android:layout_marginTop="108dp"
+        android:ems="10"
+        android:hint="Building Address"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="167dp"
+        tools:layout_editor_absoluteY="112dp" />
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/addressTV"
+        android:layout_below="@+id/addressET"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="94dp"
+        android:onClick="onPressedSave"
+        android:text="@string/save" />
+
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/save"
+        android:layout_alignEnd="@+id/addressET"
+        android:onClick="onPressedCancel"
+        android:text="@string/cancel" />
+</RelativeLayout>
