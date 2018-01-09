@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.algonquincollegelive.oh000024.doorsopenottawa">
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+   <uses-feature android:name="android.hardware.camera2" android:required="true"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -52,7 +52,7 @@
             android:name=".DetailActivity"
             android:label="@string/title_activity_detail" />
         <activity android:name=".EditBuildingActivity" />
-        <activity android:name=".NewBuilding" />
+        <activity android:name=".Building_New"></activity>
     </application>
 
 </manifest>

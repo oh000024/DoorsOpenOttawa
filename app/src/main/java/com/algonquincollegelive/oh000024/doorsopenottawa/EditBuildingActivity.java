@@ -1,24 +1,22 @@
 package com.algonquincollegelive.oh000024.doorsopenottawa;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.view.menu.ExpandedMenuView;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.algonquincollegelive.oh000024.doorsopenottawa.model.BuildingPOJO;
 import com.algonquincollegelive.oh000024.doorsopenottawa.service.MyService;
 import com.algonquincollegelive.oh000024.doorsopenottawa.utils.HttpMethod;
 import com.algonquincollegelive.oh000024.doorsopenottawa.utils.RequestPackage;
+
 /**
- *  Edite Activity for buildings
- *  @author jake Oh (oh000024@algonquinlive.com)
+ * Edite Activity for buildings
+ *
+ * @author jake Oh (oh000024@algonquinlive.com)
  */
 public class EditBuildingActivity extends AppCompatActivity {
 
@@ -43,8 +41,7 @@ public class EditBuildingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_building);
 
         Bundle extras = getIntent().getExtras();
-        if(extras !=null)
-        {
+        if (extras != null) {
             mbuiling = (BuildingPOJO) extras.getParcelable("CLICKEDBUILDING");
         }
 
@@ -57,7 +54,7 @@ public class EditBuildingActivity extends AppCompatActivity {
             descriptionET.setText(mbuiling.getDescriptionEN());
 
             isNewBuilding = (CheckBox) findViewById(R.id.isNewBuildingCB);
-            isNewBuilding.setChecked(mbuiling.getIsNewBuilding());
+            isNewBuilding.setChecked(mbuiling.isIsNewBuilding());
 
             saturdayStartET = (EditText) findViewById(R.id.editSaturdayStartET);
             saturdayStartET.setText(mbuiling.getSaturdayStart().toString());
@@ -70,18 +67,19 @@ public class EditBuildingActivity extends AppCompatActivity {
 
             sundayEndET = (EditText) findViewById(R.id.editSundayEndET);
             sundayEndET.setText(mbuiling.getSundayClose().toString());
-        } catch(Exception e){
+        } catch (Exception e) {
 
         }
     }
 
-    public  void onPressedUpdate(View v) {
+    public void onPressedUpdate(View v) {
         updateBuilding();
     }
 
     public void onPressedCancel(View v) {
         finish();
     }
+
     private void updateBuilding() {
         BuildingPOJO pluto = new BuildingPOJO();
 
@@ -97,18 +95,18 @@ public class EditBuildingActivity extends AppCompatActivity {
         mbuiling.setSundayClose(sundayEndET.getText().toString());
 
         RequestPackage requestPackage = new RequestPackage();
-        requestPackage.setMethod( HttpMethod.PUT );
-        requestPackage.setEndPoint( MainActivity.DOO_URL+"/" + mbuiling.getBuildingId() );
+        requestPackage.setMethod(HttpMethod.PUT);
+        requestPackage.setEndPoint(MainActivity.DOO_URL + "/" + mbuiling.getBuildingId());
 
         requestPackage.setParam("addressEN", mbuiling.getAddressEN());
-        requestPackage.setParam("descriptionEN", mbuiling.getDescriptionEN() );
-        requestPackage.setParam("isNewBuilding", mbuiling.getIsNewBuilding()+"" );
+        requestPackage.setParam("descriptionEN", mbuiling.getDescriptionEN());
+        requestPackage.setParam("isNewBuilding", mbuiling.isIsNewBuilding() + "");
 
-        requestPackage.setParam("saturdayStart", mbuiling.getSaturdayStart().toString() );
-        requestPackage.setParam("saturdayClose", mbuiling.getSaturdayClose().toString() );
+        requestPackage.setParam("saturdayStart", mbuiling.getSaturdayStart().toString());
+        requestPackage.setParam("saturdayClose", mbuiling.getSaturdayClose().toString());
 
-        requestPackage.setParam("sundayStart", mbuiling.getSundayStart().toString() );
-        requestPackage.setParam("sundayClose", mbuiling.getSundayClose().toString() );
+        requestPackage.setParam("sundayStart", mbuiling.getSundayStart().toString());
+        requestPackage.setParam("sundayClose", mbuiling.getSundayClose().toString());
 
 
         Intent intent = new Intent(this, MyService.class);
@@ -116,5 +114,6 @@ public class EditBuildingActivity extends AppCompatActivity {
         startService(intent);
 
         Log.i(TAG, "updatePlanetPluto(): " + mbuiling.getNameEN());
+        finish();
     }
 }

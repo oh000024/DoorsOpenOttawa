@@ -1,10 +1,8 @@
 package com.algonquincollegelive.oh000024.doorsopenottawa;
 
-import android.location.Address;
 import android.location.Geocoder;
-import android.media.Image;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,42 +20,45 @@ import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.util.Locale;
+
 /**
- *  DetailActivity for show buildings
- *  @author jake Oh (oh000024@algonquinlive.com)
+ * DetailActivity for show buildings
+ *
+ * @author jake Oh (oh000024@algonquinlive.com)
  */
 public class DetailActivity extends FragmentActivity implements OnMapReadyCallback {
 
-//    private static final String PHOTO_BASE_URL = "https://doors-open-ottawa.mybluemix.net/buildings/";
+    //    private static final String PHOTO_BASE_URL = "https://doors-open-ottawa.mybluemix.net/buildings/";
     private GoogleMap mMap;
 
     private Geocoder mGeocoder;
     BuildingPOJO mbuiling;
-    String maddress;    @Override
+    String maddress;
+
+    @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
         Bundle extras = getIntent().getExtras();
-        if(extras !=null)
-        {
+        if (extras != null) {
             mbuiling = (BuildingPOJO) extras.getParcelable("CLICKEDBUILDING");
 
         }
-        TextView buildingTV  = (TextView)findViewById(R.id.buildNameText);
-        EditText buildingET  = (EditText)findViewById(R.id.buildingDesc);
-        ImageView buildingIM = (ImageView)findViewById(R.id.buildingIV);
-        TextView openTV = (TextView)findViewById(R.id.openTV);
+        TextView buildingTV = (TextView) findViewById(R.id.buildNameText);
+        EditText buildingET = (EditText) findViewById(R.id.buildingDesc);
+        ImageView buildingIM = (ImageView) findViewById(R.id.buildingIV);
+        TextView openTV = (TextView) findViewById(R.id.openTV);
 
         try {
-            maddress = mbuiling.getAddressEN() +" "+ mbuiling.getPostalCode();
+            maddress = mbuiling.getAddressEN() + " " + mbuiling.getPostalCode();
             buildingET.setText(mbuiling.getDescriptionEN());
             buildingET.setSelection(2);
             buildingET.setEnabled(false);
             buildingTV.setText(mbuiling.getNameEN());
             openTV.setText("Open: " + mbuiling.getSaturdayStart().toString());
-            String url = MainActivity.DOO_URL + "/"+ mbuiling.getBuildingId() + "/image";
+            String url = MainActivity.DOO_URL + "/" + mbuiling.getBuildingId() + "/image";
             Picasso.with(this)
                     .load(url)
                     .memoryPolicy(MemoryPolicy.NO_CACHE)
@@ -73,7 +74,7 @@ public class DetailActivity extends FragmentActivity implements OnMapReadyCallba
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -98,8 +99,11 @@ public class DetailActivity extends FragmentActivity implements OnMapReadyCallba
 
         pin(maddress);
     }
-    /** Locate and pin locationName to the map. */
-    private void pin( String locationName ) {
+
+    /**
+     * Locate and pin locationName to the map.
+     */
+    private void pin(String locationName) {
         try {
 
 //            Address address = mGeocoder.getFromLocationName(locationName, 1).get(0);
@@ -108,9 +112,9 @@ public class DetailActivity extends FragmentActivity implements OnMapReadyCallba
 //                address.setLatitude(mbuiling.getLatitude());
 //                address.setLongitude(mbuiling.getLongitude());
 //            }
-            LatLng ll = new LatLng( mbuiling.getLatitude(), mbuiling.getLongitude() );
-            mMap.addMarker( new MarkerOptions().position(ll).title(locationName) );
-            mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(ll, 17.F) );
+            LatLng ll = new LatLng(mbuiling.getLatitude(), mbuiling.getLongitude());
+            mMap.addMarker(new MarkerOptions().position(ll).title(locationName));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ll, 17.F));
             Toast.makeText(this, "Pinned: " + locationName, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Toast.makeText(this, "Not found: " + locationName, Toast.LENGTH_SHORT).show();

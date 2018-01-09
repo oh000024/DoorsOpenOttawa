@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.net.Uri;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.LocalBroadcastManager;
@@ -14,9 +14,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -30,8 +30,6 @@ import com.algonquincollegelive.oh000024.doorsopenottawa.utils.HttpMethod;
 import com.algonquincollegelive.oh000024.doorsopenottawa.utils.NetworkHelper;
 import com.algonquincollegelive.oh000024.doorsopenottawa.utils.RequestPackage;
 
-import java.util.List;
-
 /**
  *  MainActivity
  *  @author jake Oh (oh000024@algonquinlive.com)
@@ -39,8 +37,10 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private static final String ABOUT_DIALOG_TAG = "About Dialog";
-    public static final String INTENT_CODE_RET = "RET";
     public static final String DOO_URL = "https://doors-open-ottawa.mybluemix.net/buildings";
+
+    public static final String  NEW_BUILDING_DATA = "NEW_BUILDING_DATA";
+    public static final String  NEW_BUILDING_IMAGE = "NEW_BUILDING_IMAGE";
     public static final int     REQUEST_NEW_BUILDING = 1;
     public static final int     REQUEST_EDIT_BUILDING = 2;
     private static final int    NO_SELECTED_CATEGORY_ID = -1;
@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String     TAG = "CRUD";
     private boolean                 networkOk;
     private BuildingAdapter         mBuildingAdapter;
-    private List<BuildingPOJO>      mBuildingList;
     private RecyclerView            mRecyclerView;
     private  int                    mNewBuildingId = 0 ;
     private ProgressBar             mProgressBar;
@@ -61,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout            mDrawerLayout;
     private ListView                mDrawerList;
     private int                     mRememberSelectedCategoryId;
+    private Bitmap                  mBitmap;
 
     public enum CATEGORI {RELIGIOUS,EMBASSIES,GOVERNMENT,FUNCTIONAL,GALLERIES,ACADEMIC,SPORTS,COMMUNITY,BUSINESS,MUSEUEMS,OTHER}
 
@@ -87,11 +87,12 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             mProgressBar.setVisibility(View.INVISIBLE);
+
             if (intent.hasExtra(MyService.MY_SERVICE_PAYLOAD)) {
                 BuildingPOJO[] buildingsArray = (BuildingPOJO[]) intent
                         .getParcelableArrayExtra(MyService.MY_SERVICE_PAYLOAD);
                 Toast.makeText(MainActivity.this,
-                        "Received " + buildingsArray.length + " planets from service",
+                        "Received " + buildingsArray.length + " buildings from service",
                         Toast.LENGTH_SHORT).show();
                 mBuildingAdapter.setBuildings(buildingsArray);
                 mRecyclerView.setAdapter( mBuildingAdapter );
@@ -99,13 +100,15 @@ public class MainActivity extends AppCompatActivity {
             } else if (intent.hasExtra(MyService.MY_SERVICE_RESPONSE)) {
                 String response = intent.getStringExtra(MyService.MY_SERVICE_RESPONSE);
                 Toast.makeText(context, response, Toast.LENGTH_SHORT).show();
-                mNewBuildingId = Integer.parseInt(response.split("/")[1]);
-                if(0 != mNewBuildingId){
-                    //uploadImageFileOfBuilding();
+                String retmethode = response.split("/")[0];
+
+                if((retmethode == "POST")  ||(retmethode =="PUT")){
+                    int mNewBuildingId = Integer.parseInt(response.split("/")[1]);
+                    uploadBitmap(mNewBuildingId);
+                } else{
+                    getBuildings(mRememberSelectedCategoryId);
                 }
-                // the planet data has changed on the web service
-                // fetch fetch all the planet data, and re-fresh the list
-                getBuildings(mRememberSelectedCategoryId);
+
             } else if (intent.hasExtra(MyService.MY_SERVICE_EXCEPTION)) {
                 String message = intent.getStringExtra(MyService.MY_SERVICE_EXCEPTION);
                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
@@ -117,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
                 // the planet data has changed on the web service
                 // fetch fetch all the planet data, and re-fresh the list
                 getBuildings(mRememberSelectedCategoryId);
+
             } else if (intent.hasExtra(UploadImageFileService.UPLOAD_IMAGE_FILE_SERVICE_EXCEPTION)) {
                 String message = intent.getStringExtra(UploadImageFileService.UPLOAD_IMAGE_FILE_SERVICE_EXCEPTION);
                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
@@ -167,9 +171,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(getApplicationContext(), NewBuilding.class);
+                Intent intent = new Intent(getApplicationContext(), Building_New.class);
 
-                startActivity(intent);
+                startActivityForResult(intent, REQUEST_NEW_BUILDING);
 //                setUpToolbar();
             }
         });
@@ -282,7 +286,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult (int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_NEW_BUILDING) {
+            if (resultCode == RESULT_OK) {
+                BuildingPOJO newBuilding = data.getExtras().getParcelable(NEW_BUILDING_DATA);
+                Bitmap image  = (Bitmap) data.getParcelableExtra(NEW_BUILDING_IMAGE);
+                if (image != null) {
+                    mBitmap = image;
+                }
 
+                Toast.makeText(this, "Added Building: " + newBuilding.getNameEN(), Toast.LENGTH_SHORT).show();
+            }
+
+            if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(this, "Cancelled: Add New Building", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+    private void uploadBitmap(int buildingId) {
+        if (mBitmap != null ) {
+            RequestPackage requestPackage = new RequestPackage();
+            requestPackage.setMethod(HttpMethod.POST);
+            requestPackage.setEndPoint(JSON_URL + "/" + buildingId + "/image");
+
+            Toast.makeText(this, "Uploaded image for Building Id: " + buildingId + "", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(this, UploadImageFileService.class);
+            intent.putExtra(UploadImageFileService.REQUEST_PACKAGE, requestPackage);
+            intent.putExtra(NEW_BUILDING_IMAGE, mBitmap);
+            startService(intent);
+        }
     }
 }

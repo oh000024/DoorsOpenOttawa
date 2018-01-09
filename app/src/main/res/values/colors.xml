@@ -2,9 +2,10 @@
 <resources>
     <color name="colorPrimary">#FF6F00</color>
     <color name="colorPrimaryDark">#FFA000</color>
-    <color name="colorAccent">#69f0ae</color>
+    <color name="colorAccent">#31fc9d</color>
     <color name="colorPrimaryDark2">#FFC107</color>
     <color name="grey_500">#9E9E9E</color>
+    <color name="editboxes">#FFEBFBF4</color>
 </resources>
 
 

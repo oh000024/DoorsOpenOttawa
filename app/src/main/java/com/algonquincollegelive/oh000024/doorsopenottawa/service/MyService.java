@@ -1,4 +1,5 @@
 package com.algonquincollegelive.oh000024.doorsopenottawa.service;
+
 import android.app.IntentService;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
@@ -12,11 +13,11 @@ import java.io.IOException;
 
 /**
  * Class MyService.
- *
+ * <p>
  * Fetch the data at URI.
  * Return an array of Building[] as a broadcast message.
  *
- *  @author jake Oh (oh000024@algonquinlive.com)
+ * @author jake Oh (oh000024@algonquinlive.com)
  */
 public class MyService extends IntentService {
 
@@ -60,12 +61,10 @@ public class MyService extends IntentService {
             case DELETE:
                 BuildingPOJO building = gson.fromJson(response, BuildingPOJO.class);
                 String message;
-//                if(building.getIsNewBuilding()){
-                    message = requestPackage.getMethod() + ": " + building.getNameEN() +"/" + building.getBuildingId();
-//                } else{
-//                    message = requestPackage.getMethod() + ": " + building.getNameEN();
-//                }
-                messageIntent.putExtra(MY_SERVICE_RESPONSE,message);
+
+                message = requestPackage.getMethod() + ": " + building.getNameEN() + "/" + building.getBuildingId();
+
+                messageIntent.putExtra(MY_SERVICE_RESPONSE, message);
                 break;
         }
         LocalBroadcastManager manager =
