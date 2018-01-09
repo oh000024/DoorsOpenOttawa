@@ -5,25 +5,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
-    android:layout_marginTop="5dp"
-    card_view:cardCornerRadius="5dp">
+    android:layout_marginLeft="2dp"
+    android:layout_marginRight="2dp"
+    android:layout_marginTop="2dp"
+    card_view:cardCornerRadius="2dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
         android:orientation="horizontal">
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="96dp"
-        android:layout_height="96dp" />
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="96dp"
+            android:layout_height="96dp" />
+
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="0.90"
             android:orientation="vertical"
             tools:background="@color/common_action_bar_splitter">
 
@@ -31,21 +32,41 @@
                 android:id="@+id/buildNameText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="7dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
                 android:text="a Building"
-                android:textColor="#616161"
+                android:textColor="@android:color/holo_green_dark"
                 android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/buildingAddressText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="7dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignStart="@+id/buildNameText"
+                android:layout_marginBottom="11dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="7dp"
                 android:text="a Address"
                 android:textColor="@color/colorPrimary"
                 android:textSize="15sp"
                 android:textStyle="italic" />
-        </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:button="@drawable/checkbox_selector"
+                android:text=""
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true" />
+
+        </RelativeLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

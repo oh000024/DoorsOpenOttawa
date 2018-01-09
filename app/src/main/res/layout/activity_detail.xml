@@ -34,7 +34,8 @@
         android:inputType="textMultiLine"
         android:isScrollContainer="true"
         android:textAlignment="viewStart"
-        android:textSize="14sp" />
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/openTV"
