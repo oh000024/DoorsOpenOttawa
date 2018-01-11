@@ -18,7 +18,7 @@ import android.os.Parcelable;
  * Next, use this online tool to generate this POJO class: http://www.jsonschema2pojo.org/
  * Apply these settings:
  * Package: mad9132.doo
- * Class name: PlanetPOJO
+ * Class name: BuildingPOJO
  * Target language: Java
  * Source type: JSON
  * Annotation style: None

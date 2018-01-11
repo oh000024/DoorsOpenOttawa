@@ -123,8 +123,8 @@ public class MainActivity extends AppCompatActivity {
             if (intent.hasExtra(UploadImageFileService.UPLOAD_IMAGE_FILE_SERVICE_RESPONSE)) {
                 String response = intent.getStringExtra(UploadImageFileService.UPLOAD_IMAGE_FILE_SERVICE_RESPONSE);
                 Toast.makeText(context, response, Toast.LENGTH_SHORT).show();
-                // the planet data has changed on the web service
-                // fetch fetch all the planet data, and re-fresh the list
+                // the Buidling data has changed on the web service
+                // fetch fetch all the Building data, and re-fresh the list
                 getBuildings(mRememberSelectedCategoryId);
 
             } else if (intent.hasExtra(UploadImageFileService.UPLOAD_IMAGE_FILE_SERVICE_EXCEPTION)) {
@@ -230,12 +230,12 @@ public class MainActivity extends AppCompatActivity {
             switch( item.getItemId() ) {
                 case R.id.action_sort_name_asc:
                     mBuildingAdapter.sortByNameAscending();
-                    Log.i( TAG, "Sorting planets by name (a-z)" );
+                    Log.i( TAG, "Sorting Building by name (a-z)" );
                     break;
 
                 case R.id.action_sort_name_dsc:
                     mBuildingAdapter.sortByNameDescending();
-                    Log.i( TAG, "Sorting planets by name (z-a)" );
+                    Log.i( TAG, "Sorting Buidling by name (z-a)" );
                     break;
             }
 
@@ -246,7 +246,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Fetch the planet data from the web service.
+     * Fetch the Building data from the web service.
      *
      * Operation: HTTP GET /building
      */
@@ -277,7 +277,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Update binary image file of building
      *
-     * Operation: HTTP POST /planets/id/image
+     * Operation: HTTP POST /Buildings/id/image
      */
     private void uploadImageFileOfBuilding() {
 

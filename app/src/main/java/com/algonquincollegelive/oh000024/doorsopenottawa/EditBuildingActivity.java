@@ -113,7 +113,7 @@ public class EditBuildingActivity extends AppCompatActivity {
         intent.putExtra(MyService.REQUEST_PACKAGE, requestPackage);
         startService(intent);
 
-        Log.i(TAG, "updatePlanetPluto(): " + mbuiling.getNameEN());
+        Log.i(TAG, "updateBuilding: " + mbuiling.getNameEN());
         finish();
     }
 }

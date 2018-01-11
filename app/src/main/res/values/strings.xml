@@ -1,27 +1,10 @@
 <resources>
     <string name="app_name">Doors Open Ottawa</string>
-    <string name="action_settings">Settings</string>
-    <string name="get_data">1. Fetch Planets</string>
-    <string name="post_data">2. Create a new Planet (Pluto)</string>
-    <string name="put_data">3. Update Pluto to hurdleg</string>
-    <string name="delete_data">4. Delete Pluto</string>
-    <string name="delete_data_bogus">5. Delete Bogus Planet</string>
 
     <string name="show_all_buildings">Show All Buildings</string>
     <string name="choose_a_category">Choose a Category</string>
 
     <!-- TODO #6 - string resource for upload image menu item -->
-    <string name="religious">Reiligious</string>
-    <string name="embassies">Embassies</string>
-    <string name="government">Government</string>
-    <string name="functional">Functional</string>
-    <string name="galleriestheaters">galleries and Theaters</string>
-    <string name="museuems">Museums</string>
-    <string name="business">Business / Foundations</string>
-    <string name="community">Community and Care Centers</string>
-    <string name="sports">Sports and Lesure</string>
-    <string name="academic">Academic Institutions</string>
-    <string name="other">Other</string>
 
     <string-array name="categories">
         <item>Religious</item>
@@ -37,7 +20,6 @@
         <item>Other</item>
     </string-array>
 
-    <string name="post_data_binary">6. Upload Image of Pluto</string>
     <string name="author">JakeOh(oh000024@algonquinlive.com)</string>
     <string name="action_about">Doors Open Ottawa</string>
     <string name="title_activity_detail">Map</string>
@@ -53,7 +35,5 @@
     <string name="sundayend">SundayEnd</string>
     <string name="delete_image">delete</string>
     <string name="add_image">Add</string>
-    <string name="buildingAddress">Address</string>
-    <string name="buildingName">Building Name</string>
 
 </resources>
