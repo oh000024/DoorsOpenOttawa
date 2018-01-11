@@ -30,7 +30,7 @@ The essential requirements of the app include:
 ~~Status: complete~~
 
 ## 10. Delete Your Building
-Status: complete
+~~Status: complete~~
 
 ## 11. Sort Buildings Alphabetically
 ~~Status: complete~~
@@ -43,7 +43,6 @@ Status: complete
 
 ## 14. Settings for Padding and Margin
 ~~Status: complete~~
-<hr/>
 
 # Desireable Requirements
 
