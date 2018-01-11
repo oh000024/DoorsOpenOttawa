@@ -47,3 +47,6 @@ Status: complete
 ##Desireable Requirements##
 1. CardView
 Status: complete
+
+2. Favourite Buildings
+Status: complete
