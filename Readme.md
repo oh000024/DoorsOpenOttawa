@@ -1,4 +1,4 @@
-##Essential Requirements##
+# Essential Requirements##
 
 The essential requirements of the app include:
 
@@ -44,7 +44,7 @@ Status: complete
 14. Settings for Padding and Margin
 Status: complete
 
-##Desireable Requirements##
+# Desireable Requirements##
 1. CardView
 Status: complete
 
