@@ -44,6 +44,7 @@ The essential requirements of the app include:
 ## 14. Settings for Padding and Margin
 ~~Status: complete~~
 
+<hr/>
 # Desireable Requirements
 
 ## 1. CardView
