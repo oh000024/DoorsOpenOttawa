@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.util.ArrayMap;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -29,6 +30,8 @@ import com.algonquincollegelive.oh000024.doorsopenottawa.service.UploadImageFile
 import com.algonquincollegelive.oh000024.doorsopenottawa.utils.HttpMethod;
 import com.algonquincollegelive.oh000024.doorsopenottawa.utils.NetworkHelper;
 import com.algonquincollegelive.oh000024.doorsopenottawa.utils.RequestPackage;
+
+import java.lang.reflect.Array;
 
 /**
  *  MainActivity
@@ -61,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
     private ListView                mDrawerList;
     private int                     mRememberSelectedCategoryId;
     private Bitmap                  mBitmap;
+    private Menu                    moptionsMenu;
+    private ArrayMap<Integer, Boolean> mstars;
 
     public enum CATEGORI {RELIGIOUS,EMBASSIES,GOVERNMENT,FUNCTIONAL,GALLERIES,ACADEMIC,SPORTS,COMMUNITY,BUSINESS,MUSEUEMS,OTHER}
 
@@ -96,13 +101,14 @@ public class MainActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                 mBuildingAdapter.setBuildings(buildingsArray);
                 mRecyclerView.setAdapter( mBuildingAdapter );
+//                moptionsMenu.getItem().setChecked(true);
 
             } else if (intent.hasExtra(MyService.MY_SERVICE_RESPONSE)) {
                 String response = intent.getStringExtra(MyService.MY_SERVICE_RESPONSE);
                 Toast.makeText(context, response, Toast.LENGTH_SHORT).show();
-                String retmethode = response.split("/")[0];
+                String retmethode = response.split(":")[0];
 
-                if((retmethode == "POST")  ||(retmethode =="PUT")){
+                if(retmethode.equals("POST")){
                     int mNewBuildingId = Integer.parseInt(response.split("/")[1]);
                     uploadBitmap(mNewBuildingId);
                 } else{
@@ -194,6 +200,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        moptionsMenu = menu;
         return true;
 //        return super.onCreateOptionsMenu(menu);
     }
