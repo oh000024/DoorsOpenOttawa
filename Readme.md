@@ -3,7 +3,7 @@
 The essential requirements of the app include:
 
 ## 1. Automatically fetch building data when app launches
-~~ Status: complete ~~
+~~Status: complete~~
 
 ## 2. Improve the visual appearance of MainActivity
 ~~Status: complete~~
@@ -44,6 +44,7 @@ Status: complete
 ## 14. Settings for Padding and Margin
 ~~Status: complete~~
 <hr/>
+
 # Desireable Requirements
 
 ## 1. CardView
