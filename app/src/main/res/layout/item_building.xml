@@ -13,7 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
+        android:background="@color/background"
         android:orientation="horizontal">
 
         <ImageView
@@ -39,7 +39,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:text="a Building"
-                android:textColor="@android:color/holo_green_dark"
+                android:textColor="@color/buildingname"
                 android:textSize="18sp" />
 
             <TextView
@@ -52,7 +52,7 @@
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="7dp"
                 android:text="a Address"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/buildingaddress"
                 android:textSize="15sp"
                 android:textStyle="italic" />
 
@@ -60,11 +60,11 @@
                 android:id="@+id/checkBox"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:button="@drawable/checkbox_selector"
-                android:text=""
-                android:layout_alignTop="@+id/buildingAddressText"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="8dp" />
+                android:layout_alignTop="@+id/buildingAddressText"
+                android:layout_marginEnd="8dp"
+                android:button="@drawable/checkbox_selector"
+                android:text="" />
 
         </RelativeLayout>
 

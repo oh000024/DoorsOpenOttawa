@@ -5,6 +5,9 @@
     <color name="colorAccent">#31fc9d</color>
     <color name="grey_500">#9E9E9E</color>
     <color name="editboxes">#FFEBFBF4</color>
+    <color name="background">#484747</color>
+    <color name="buildingname">#bcf962</color>
+    <color name="buildingaddress">#fab236</color>
 </resources>
 
 
